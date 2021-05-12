@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class AKEBUser {
@@ -18,6 +19,18 @@ public class AKEBUser {
 	
 	private String qualification;
 
+	private String contact; 
+	
+	private String dob;
+	
+	private String isUpdate; 
+	
+	@OneToOne
+	private RegionalCouncil regionalCouncil; 
+	
+	@OneToOne
+	private LocalCouncil localCouncil; 
+	
 	public Long getId() {
 		return id;
 	}
@@ -50,10 +63,59 @@ public class AKEBUser {
 		this.qualification = qualification;
 	}
 
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+	public String getDob() {
+		return dob;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+	 
+
+	public String getIsUpdate() {
+		return isUpdate;
+	}
+
+	public void setIsUpdate(String isUpdate) {
+		this.isUpdate = isUpdate;
+	}
+
+	
+	public RegionalCouncil getRegionalCouncil() {
+		return regionalCouncil;
+	}
+
+	public void setRegionalCouncil(RegionalCouncil regionalCouncil) {
+		this.regionalCouncil = regionalCouncil;
+	}
+
+	public LocalCouncil getLocalCouncil() {
+		return localCouncil;
+	}
+
+	public void setLocalCouncil(LocalCouncil localCouncil) {
+		this.localCouncil = localCouncil;
+	}
+
 	@Override
 	public String toString() {
-		return "AKEBUser [id=" + id + ", email=" + email + ", name=" + name + ", qualification=" + qualification + "]";
-	} 
+		return "AKEBUser [id=" + id + ", email=" + email + ", name=" + name + ", qualification=" + qualification
+				+ ", contact=" + contact + ", dob=" + dob + ", isUpdate=" + isUpdate + ", regionalCouncil="
+				+ regionalCouncil + ", localCouncil=" + localCouncil + "]";
+	}
+
+	 
+	 
+	
 	
 	
 }

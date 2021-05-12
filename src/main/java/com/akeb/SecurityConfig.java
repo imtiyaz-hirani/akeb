@@ -29,6 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 		http
 		.authorizeRequests()
+		.antMatchers("/webinars").permitAll()
+		.antMatchers("/webinar-category").authenticated()
+		.antMatchers("/webinar/**").authenticated()
 		.antMatchers("/user/webinar/registrations").authenticated()
 		.antMatchers("/user/webinar/register").permitAll()
 		.antMatchers("/user/**").permitAll()
