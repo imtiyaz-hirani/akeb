@@ -15,7 +15,11 @@ public class AKEBUser {
 	
 	private String email;
 	
-	private String name; 
+	private String fName; 
+	
+	private String mName; 
+	
+	private String lName; 
 	
 	private String qualification;
 
@@ -23,14 +27,14 @@ public class AKEBUser {
 	
 	private String dob;
 	
-	private String isUpdate; 
+	private String regionalCouncil;
 	
-	@OneToOne
-	private RegionalCouncil regionalCouncil; 
+	private String localCouncil;
 	
-	@OneToOne
-	private LocalCouncil localCouncil; 
+	private String university;
 	
+	private String college;
+
 	public Long getId() {
 		return id;
 	}
@@ -47,12 +51,28 @@ public class AKEBUser {
 		this.email = email;
 	}
 
-	public String getName() {
-		return name;
+	public String getfName() {
+		return fName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getmName() {
+		return mName;
+	}
+
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
 	}
 
 	public String getQualification() {
@@ -79,43 +99,35 @@ public class AKEBUser {
 		this.dob = dob;
 	}
 
-	 
-
-	public String getIsUpdate() {
-		return isUpdate;
-	}
-
-	public void setIsUpdate(String isUpdate) {
-		this.isUpdate = isUpdate;
-	}
-
-	
-	public RegionalCouncil getRegionalCouncil() {
+	public String getRegionalCouncil() {
 		return regionalCouncil;
 	}
 
-	public void setRegionalCouncil(RegionalCouncil regionalCouncil) {
+	public void setRegionalCouncil(String regionalCouncil) {
 		this.regionalCouncil = regionalCouncil;
 	}
 
-	public LocalCouncil getLocalCouncil() {
+	public String getLocalCouncil() {
 		return localCouncil;
 	}
 
-	public void setLocalCouncil(LocalCouncil localCouncil) {
+	public void setLocalCouncil(String localCouncil) {
 		this.localCouncil = localCouncil;
 	}
 
-	@Override
-	public String toString() {
-		return "AKEBUser [id=" + id + ", email=" + email + ", name=" + name + ", qualification=" + qualification
-				+ ", contact=" + contact + ", dob=" + dob + ", isUpdate=" + isUpdate + ", regionalCouncil="
-				+ regionalCouncil + ", localCouncil=" + localCouncil + "]";
+	public String getUniversity() {
+		return university;
 	}
 
-	 
-	 
-	
-	
-	
+	public void setUniversity(String university) {
+		this.university = university;
+	}
+
+	public String getCollege() {
+		return college;
+	}
+
+	public void setCollege(String college) {
+		this.college = college;
+	}	
 }

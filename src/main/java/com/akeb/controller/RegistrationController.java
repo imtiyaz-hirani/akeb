@@ -58,14 +58,13 @@ public class RegistrationController {
 	
 	@CrossOrigin()
 	@PostMapping("/user/register/webinar/{webinarId}")
-	public void postUser(@PathVariable("webinarId") Long webinarId, @RequestBody UserDto dto) {
+	public AKEBUser postUser(@PathVariable("webinarId") Long webinarId, @RequestBody UserDto dto) {
 		 AKEBUser user = convertDto(dto);
 		 Webinar webinar = webinarRepository.getOne(webinarId);
 		 Register register = new Register();
 		 AKEBUser userDB = userRepository.findByEmail(user.getEmail());
 		 if(userDB == null) {
-			 user.setRegionalCouncil(regionalCouncilRepository.getOne(dto.getRegionalCouncil()));
-			 user.setLocalCouncil(localCouncilRepository.getOne(dto.getLocalCouncil()));
+			  
 			 register.setUser(userRepository.save(user));
 		 }else {
 			 register.setUser(userDB);
@@ -76,6 +75,7 @@ public class RegistrationController {
 		 Register isRegister = registerRepository.checkIfAlreadyRegistered(user.getEmail(), webinar.getId());
 		 if(isRegister == null)
 			 registerRepository.save(register);
+		 return user;
 	}
 	
 	@GetMapping("/user/webinar/registrations")
@@ -85,34 +85,30 @@ public class RegistrationController {
 	
 	private static AKEBUser convertDto(UserDto dto) {
 		AKEBUser user = new AKEBUser();
-		user.setName(dto.getName());
+		user.setfName(dto.getfName());
+		user.setmName(dto.getmName());
+		user.setlName(dto.getlName());
 		user.setEmail(dto.getEmail());
 		user.setContact(dto.getContact());
 		user.setDob(dto.getDob());
 		user.setQualification(dto.getQualification());
-		user.setIsUpdate(dto.getIsUpdate());
+		user.setCollege(dto.getCollege());
+		user.setUniversity(dto.getUniversity());
+		user.setLocalCouncil(dto.getLocalCouncil());
+		user.setRegionalCouncil(dto.getRegionalCouncil());
+		 
 		return user;
 	}
 	
-	@PostMapping("/user/webinar/questions/{wid}/{email}")
-	public void postWebinarQuestions(@RequestBody QuestionDto dto, @PathVariable("wid") Long wid, 
-			@PathVariable("email") String email) {
+	@PostMapping("/user/webinar/questions/{wid}/{uid}")
+	public void postWebinarQuestions(@RequestBody Answer answer, @PathVariable("wid") Long wid, 
+			@PathVariable("uid") Long uid) {
 		
 		Webinar webinar = webinarRepository.getOne(wid);
-		AKEBUser user = userRepository.findByEmail(email);
+		AKEBUser user = userRepository.getOne(uid);
+		answer.setWebinar(webinar);
+		answer.setUser(user);
 		
-		List<Answer> answerList = new ArrayList<>();
-		
-		dto.getQuestions().forEach(q->{
-			Answer answer = new Answer();
-			answer.setWebinar(webinar);
-			answer.setUser(user);
-			answer.setQuestionText(q.getQtext());
-			answer.setAnswerText(q.getAns());
-			
-			answerList.add(answer);
-		});
-		
-		ansRepository.saveAll(answerList);
+		ansRepository.save(answer);
 	}
 }

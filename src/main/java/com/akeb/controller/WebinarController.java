@@ -46,6 +46,10 @@ public class WebinarController {
 		return dto;
 	}
 	
+	@GetMapping("/webinar/{id}")
+	public Webinar getWebinatById(@PathVariable("id") Long id) {
+		return this.webinarRepository.getOne(id);
+	}
 	@PostMapping("/webinar/{catId}")
 	public void postWebinar(@PathVariable("catId") Long catId, @RequestBody Webinar webinar) {
 		WebinarCategory category = this.webinarCategoryRepository.getOne(catId);

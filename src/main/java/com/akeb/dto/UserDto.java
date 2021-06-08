@@ -5,9 +5,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDto {
 
-private String email;
+    private String email;
 	
-	private String name; 
+	private String fName;
+	
+	private String mName;
+	
+	private String lName;
 	
 	private String qualification;
 
@@ -15,11 +19,13 @@ private String email;
 	
 	private String dob;
 	
-	private String isUpdate;
+	private String regionalCouncil;
 	
-	private Long regionalCouncil;
+	private String localCouncil;
 	
-	private Long localCouncil;
+	private String university;
+	
+	private String college;
 
 	public String getEmail() {
 		return email;
@@ -29,12 +35,28 @@ private String email;
 		this.email = email;
 	}
 
-	public String getName() {
-		return name;
+	public String getfName() {
+		return fName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getmName() {
+		return mName;
+	}
+
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
 	}
 
 	public String getQualification() {
@@ -61,29 +83,37 @@ private String email;
 		this.dob = dob;
 	}
 
-	public String getIsUpdate() {
-		return isUpdate;
-	}
-
-	public void setIsUpdate(String isUpdate) {
-		this.isUpdate = isUpdate;
-	}
-
-	public Long getRegionalCouncil() {
+	public String getRegionalCouncil() {
 		return regionalCouncil;
 	}
 
-	public void setRegionalCouncil(Long regionalCouncil) {
+	public void setRegionalCouncil(String regionalCouncil) {
 		this.regionalCouncil = regionalCouncil;
 	}
 
-	public Long getLocalCouncil() {
+	public String getLocalCouncil() {
 		return localCouncil;
 	}
 
-	public void setLocalCouncil(Long localCouncil) {
+	public void setLocalCouncil(String localCouncil) {
 		this.localCouncil = localCouncil;
 	}
-	
-	
+
+	public String getUniversity() {
+		return university;
+	}
+
+	public void setUniversity(String university) {
+		this.university = university;
+	}
+
+	public String getCollege() {
+		return college;
+	}
+
+	public void setCollege(String college) {
+		this.college = college;
+	}
+
+	 
 }

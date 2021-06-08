@@ -3,6 +3,7 @@ package com.akeb;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,11 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 		.authorizeRequests()
 		.antMatchers("/webinars").permitAll()
-		.antMatchers("/webinar-category").authenticated()
-		.antMatchers("/webinar/**").authenticated()
-		.antMatchers("/user/webinar/registrations").authenticated()
+		.antMatchers(HttpMethod.GET, "/webinar/**").permitAll()
+		.antMatchers(HttpMethod.POST, "/webinar/**").authenticated()
 		.antMatchers("/user/webinar/register").permitAll()
-		.antMatchers("/user/**").permitAll()
+		.antMatchers("/user/webinar/questions/**/**").permitAll()
+		 
 		
 		.and()
 		.httpBasic();
